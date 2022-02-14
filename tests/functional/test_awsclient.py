@@ -544,8 +544,6 @@ class TestCreateLambdaFunction(object):
             ) == 'arn:12345:name'
         stubbed_session.verify_stubs()
 
-<<<<<<< HEAD
-=======
     def test_create_function_with_layers(self, stubbed_session):
         layers = ['arn:aws:lambda:us-east-1:111:layer:test_layer:1']
         stubbed_session.stub('lambda').create_function(
@@ -564,7 +562,6 @@ class TestCreateLambdaFunction(object):
         ) == 'arn:12345:name'
         stubbed_session.verify_stubs()
 
->>>>>>> bf993c2... Wait for function state to be active when deploying
     def test_create_function_is_retried_and_succeeds(self, stubbed_session):
         kwargs = {
             'FunctionName': 'name',
@@ -592,8 +589,6 @@ class TestCreateLambdaFunction(object):
             'python2.7', 'app.app') == 'arn:12345:name'
         stubbed_session.verify_stubs()
 
-<<<<<<< HEAD
-=======
     def test_create_function_retries_on_kms_errors(self, stubbed_session):
         # You'll sometimes get this message when you first create a role.
         # We want to ensure that we're trying when this happens.
@@ -626,7 +621,6 @@ class TestCreateLambdaFunction(object):
             'python2.7', 'app.app') == 'arn:12345:name'
         stubbed_session.verify_stubs()
 
->>>>>>> bf993c2... Wait for function state to be active when deploying
     def test_retry_happens_on_insufficient_permissions(self, stubbed_session):
         # This can happen if we deploy a lambda in a VPC.  Instead of the role
         # not being able to be assumed, we can instead not have permissions
@@ -896,9 +890,6 @@ class TestUpdateLambdaFunction(object):
                 'SecurityGroupIds': ['sg1', 'sg2'],
                 'SubnetIds': ['sn1', 'sn2']
             }
-<<<<<<< HEAD
-        ).returns({})
-=======
         ).returns(self.SUCCESS_RESPONSE)
         stubbed_session.activate_stubs()
         awsclient = TypedAWSClient(stubbed_session)
@@ -917,7 +908,6 @@ class TestUpdateLambdaFunction(object):
         lambda_client.update_function_configuration(
             FunctionName='name', Layers=layers
         ).returns(self.SUCCESS_RESPONSE)
->>>>>>> bf993c2... Wait for function state to be active when deploying
         stubbed_session.activate_stubs()
         awsclient = TypedAWSClient(stubbed_session)
         awsclient.update_function(
