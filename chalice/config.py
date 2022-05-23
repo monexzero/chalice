@@ -74,8 +74,10 @@ class Config(object):
     """
 
     _PYTHON_VERSIONS = {
-        2: 'python2.7',
-        3: 'python3.6',
+        '2.7': 'python2.7',
+        '3.6': 'python3.6',
+        '3.7': 'python3.7',
+        '3.8': 'python3.8',
     }
 
     def __init__(self,
@@ -156,7 +158,9 @@ class Config(object):
         # We may open this up to configuration later, but for now,
         # we attempt to match your python version to the closest version
         # supported by lambda.
-        return self._PYTHON_VERSIONS[sys.version_info[0]]
+        major, minor = sys.version_info[0:2]
+        key = '{}.{}'.format(major, minor)
+        return self._PYTHON_VERSIONS[key]
 
     def _chain_lookup(self, name, varies_per_chalice_stage=False,
                       varies_per_function=False):
