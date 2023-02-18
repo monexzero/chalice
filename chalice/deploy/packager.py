@@ -4,6 +4,7 @@ import hashlib
 import inspect
 import re
 import subprocess
+import logging
 from email.parser import FeedParser
 from email.message import Message  # noqa
 from zipfile import ZipFile  # noqa
@@ -28,6 +29,7 @@ EnvVars = MutableMapping
 OptStr = Optional[str]
 OptBytes = Optional[bytes]
 
+logger = logging.getLogger(__name__)
 
 class InvalidSourceDistributionNameError(Exception):
     pass
